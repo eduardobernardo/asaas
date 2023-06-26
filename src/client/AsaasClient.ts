@@ -6,7 +6,7 @@ export class AsaasClient {
   public customers: CustomersAPI;
   
   constructor(private apiKey: string, options: AsaasOptions = {}) {
-    const baseURL = options.sandbox ? (options.sandboxUrl || 'https://sandbox.asaas.com') : options.baseUrl ? options.baseUrl : 'https://www.asaas.com/api/v3';  
+    const baseURL = options.sandbox ? (options.sandboxUrl || 'https://sandbox.asaas.com/api/v3') : options.baseUrl ? options.baseUrl : 'https://www.asaas.com/api/v3';  
     const apiClient = axios.create({
           baseURL,
           headers: {

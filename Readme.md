@@ -1,11 +1,13 @@
-# Unofficial Asaas SDK 
+# Unofficial Asaas Payment Gateway SDK
 
-A simple sdk made to abstract most of the Asaas payment gateway api requests
+A simple sdk made to abstract most of the Asaas payment gateway api requests.
+
+last update: 06/26/2023
 
 
 ## Author
 
-- [Eduardo Matheus Bernardo Silva](https://www.github.com/indexdc)
+- [Eduardo Matheus Bernardo Silva](https://github.com/eduardobernardo/)
 - [Idxcode](https://idxcode.com.br)
 
 
@@ -17,50 +19,60 @@ A simple sdk made to abstract most of the Asaas payment gateway api requests
 ## SDK Documentation
 
 ### Get Start
-Import the package:
+Import the package and instantitate a new Client:
 ```javascript
-import asaas from 'asaas';
+import { AsaasClient } from 'asaas';
+
+const client = new AsaasClient(process.env.ASAAS_API_KEY);
 ```
 
 ### Authentication
-Every request to the Asaas API needs an API Key, which must be passed as the first parameter in every request. To obtain your API Key, access the [Integration Tab in the Account Settings area](https://www.asaas.com/config/index?tab=pushNotification).
+Every request to the Asaas API needs an API Key, which must be passed as the first parameter in the constructor. To obtain your API Key, access the [Integration Tab in the Account Settings area](https://www.asaas.com/config/index?tab=pushNotification).
+
+Optionally you can set base url, enable sandbox mode and set sandbox mode base url.
 
 ```javascript
-import asaas from 'asaas';
+import { AsaasClient } from 'asaas';
 
-//It lists all registered customers and makes a filter by email.
-asaas.customers.list(
-  process.env.API_KEY, 
-  {
-    email: "email@email.com"
-  }
-);
+//Instantiate a new client
+const client = new AsaasClient(process.env.ASAAS_API_KEY, {
+  //baseUrl?: string (default: https://www.asaas.com/api/v3);
+  //sandbox?: boolean;
+  //sandboxUrl?: string (default: https://sandbox.asaas.com/api/v3);
+});
 ```
 
 ### Sandbox Mode
-To enable Sandbox mode in the SDK, call the `setBaseUrl` method and pass the Sandbox mode url.
+To enable Sandbox Mode, pass to the client's constructor, as the second parameter, an object with `sandbox` information as `true`. The default sandbox URL is `https://sandbox.asaas.com/api/v3`
 
 ```javascript
-import asaas from 'asaas';
+import { AsaasClient } from 'asaas';
 
-asaas.setBaseUrl("https://sandbox.asaas.com");
+const client = new AsaasClient(process.env.ASAAS_API_KEY, {
+  sandbox: true;
+  //sandboxUrl?: string (default: https://sandbox.asaas.com/api/v3);
+  //baseUrl?: string (default: https://www.asaas.com/api/v3);
+});
 ```
 
 ### Customers
 
 #### Return all customers
-Returns customers. Filters can be applied, passing an object with the items allowed in the official documentation.
+Returns customers. Filters can be applied, passing an object with the items allowed in the [official documentation](https://asaasv3.docs.apiary.io/#reference/0/clientes/listar-clientes).
 
 ```javascript
-import asaas from 'asaas';
+import { AsaasClient } from 'asaas';
+
+const client = new AsaasClient(process.env.ASAAS_API_KEY, {
+  // sandbox: boolean;
+  //sandboxUrl?: string (default: https://sandbox.asaas.com/api/v3);
+  //baseUrl?: string (default: https://www.asaas.com/api/v3);
+});
 
 //It lists all registered customers and makes a filter by email.
-asaas.customers.list(
-  process.env.API_KEY, 
-  {
-    email: "email@email.com"
-  }
-);
+await client.customers.list({
+  email: "email@email.com"
+});
 ```
 
 | Parameter   | Type       | Description                           |
@@ -76,12 +88,16 @@ asaas.customers.list(
 #### Return customer by ID
 
 ```javascript
-import asaas from 'asaas';
+import { AsaasClient } from 'asaas';
 
-asaas.customers.getById(
-  process.env.API_KEY, 
-  "cus_123abcde456"
-);
+const client = new AsaasClient(process.env.ASAAS_API_KEY, {
+  // sandbox: boolean;
+  //sandboxUrl?: string (default: https://sandbox.asaas.com/api/v3);
+  //baseUrl?: string (default: https://www.asaas.com/api/v3);
+});
+
+//It returns a customer by ID.
+await client.customers.getById("cus_123abcde456");
 ```
 
 | Parameter   | Type       | Description                           |
