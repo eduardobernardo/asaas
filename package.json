@@ -3,16 +3,23 @@
   "version": "1.0.0",
   "description": "Unofficial Asaas Payment Gateway SDK",
   "main": "dist/index.js",
-  "files": ["./dist"],
+  "files": [
+    "./dist"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "lint": "eslint src/index.ts"
   },
-  "keywords": ["asaas", "asaas sdk", "payment gateway sdk"],
+  "keywords": [
+    "asaas",
+    "asaas sdk",
+    "payment gateway sdk"
+  ],
   "author": "Eduardo Matheus Bernardo Silva",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.4.0",
     "node-fetch": "^3.3.0"
   },
   "devDependencies": {
