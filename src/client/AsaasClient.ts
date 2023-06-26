@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { AsaasOptions } from '@/types/AsaasTypes';
-import { CustomersAPI } from "@/client/Customers"
+import { AsaasOptions } from '../types/AsaasTypes';
+import { CustomersAPI } from "../client/Customers"
 
 export class AsaasClient {
   public customers: CustomersAPI;

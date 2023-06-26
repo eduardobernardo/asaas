@@ -15,9 +15,9 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AsaasClient = void 0;
-var AsaasClient_1 = require("@/client/AsaasClient");
+var AsaasClient_1 = require("./client/AsaasClient");
 Object.defineProperty(exports, "AsaasClient", { enumerable: true, get: function () { return AsaasClient_1.AsaasClient; } });
-__exportStar(require("@/types/AsaasTypes"), exports);
+__exportStar(require("./types/AsaasTypes"), exports);
 // import fetch from 'node-fetch';
 // let baseUrl = 'https://www.asaas.com';
 // // let baseUrl: string = 'https://sandbox.asaas.com'; //Sandbox

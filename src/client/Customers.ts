@@ -5,7 +5,7 @@ import {
   IAsaasDeleteCustomerResponse, 
   IListAsaasCustomerResponse, 
   IListCustomersParams 
-} from "@/types/AsaasTypes";
+} from "../types/AsaasTypes";
 
 export class CustomersAPI {
   constructor(private apiClient: AxiosInstance) {}

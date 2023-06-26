@@ -1,5 +1,5 @@
-export { AsaasClient } from '@/client/AsaasClient';
-export * from '@/types/AsaasTypes';
+export { AsaasClient } from './client/AsaasClient';
+export * from './types/AsaasTypes';
 
 // import fetch from 'node-fetch';
 
