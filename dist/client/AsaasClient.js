@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AsaasClient = void 0;
 const axios_1 = require("axios");
 const Customers_1 = require("../client/Customers");
+const Payments_1 = require("./Payments");
+const Installments_1 = require("./Installments");
 class AsaasClient {
     constructor(apiKey, options = {}) {
         this.apiKey = apiKey;
@@ -14,6 +16,8 @@ class AsaasClient {
             }
         });
         this.customers = new Customers_1.CustomersAPI(apiClient);
+        this.payments = new Payments_1.PaymentsAPI(apiClient);
+        this.installments = new Installments_1.InstallmentsAPI(apiClient);
     }
 }
 exports.AsaasClient = AsaasClient;
