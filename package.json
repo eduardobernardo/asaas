@@ -1,6 +1,6 @@
 {
   "name": "asaas",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Unofficial Asaas Payment Gateway SDK",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

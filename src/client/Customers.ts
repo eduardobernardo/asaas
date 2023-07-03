@@ -1,10 +1,10 @@
 import { AxiosInstance } from "axios";
 import { 
-  IAsaasCustomer, 
-  IAsaasCustomerResponse, 
-  IAsaasDeleteCustomerResponse, 
-  IListAsaasCustomerResponse, 
-  IListCustomersParams 
+  IAsaasCustomer,
+  IAsaasCustomerResponse,
+  IAsaasDeleteResponse,
+  IListAsaasCustomerResponse,
+  IListCustomersParams
 } from "../types/AsaasTypes";
 
 export class CustomersAPI {
@@ -40,7 +40,7 @@ export class CustomersAPI {
     }
   }
 
-  async delete(id: string): Promise<IAsaasDeleteCustomerResponse> {
+  async delete(id: string): Promise<IAsaasDeleteResponse> {
     try {
       const response = await this.apiClient.delete(`/customers/${id}`);
       return response.data;
