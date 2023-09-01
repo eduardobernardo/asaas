@@ -3,7 +3,12 @@
 
 A simple sdk made to abstract most of the Asaas payment gateway api requests.
 
-last update: 07/03/2023
+last update: 01/09/2023
+Items updated:
+- Documentation URL (Developer Center)
+- new API URL
+- Subscriptions
+- Starting API Tests with Jest
 
 
 ## Author
@@ -14,14 +19,14 @@ last update: 07/03/2023
 
 ## Reference
 
- - [Asaas API Manual](https://asaasv3.docs.apiary.io/)
+ - [Asaas API Manual](https://docs.asaas.com/)
 
  ## Features
- - [x] Customers [(Customers Documentation)](https://asaasv3.docs.apiary.io/#reference/0/clientes/criar-novo-cliente)
- - [x] Payments [(Payments Documentation)](https://asaasv3.docs.apiary.io/#reference/0/cobrancas/criar-nova-cobranca)
- - [x] Installments [(Installments Documentation)](https://asaasv3.docs.apiary.io/#reference/0/parcelamentos/recuperar-um-unico-parcelamento)
- - [ ] Subscriptions (soon) [(Subscriptions Documentation)](https://asaasv3.docs.apiary.io/#reference/0/assinaturas/criar-nova-assinatura)
- - [ ] Payment Links (soon) [(Payment Links Documentation)](https://asaasv3.docs.apiary.io/#reference/0/link-de-pagamentos/criar-nova-assinatura)
+ - [x] Customers [(Customers Documentation)](https://docs.asaas.com/reference/criar-novo-cliente)
+ - [x] Payments [(Payments Documentation)](https://docs.asaas.com/reference/criar-nova-cobranca)
+ - [x] Installments [(Installments Documentation)](https://docs.asaas.com/reference/repurar-um-unico-parcelamento)
+ - [x] Subscriptions [(Subscriptions Documentation)](https://docs.asaas.com/reference/criar-nova-assinatura)
+ - [ ] Payment Links (soon) [(Payment Links Documentation)](https://docs.asaas.com/reference/criar-um-link-de-pagamentos)
  
 
 ## SDK Documentation
@@ -31,7 +36,7 @@ Import the package and instantitate a new Client:
 ```javascript
 import { AsaasClient } from 'asaas';
 
-const client = new AsaasClient(process.env.ASAAS_API_KEY);
+const asaas = new AsaasClient(process.env.ASAAS_API_KEY);
 ```
 
 ### Authentication
@@ -43,8 +48,8 @@ Optionally you can set base url, enable sandbox mode and set sandbox mode base u
 import { AsaasClient } from 'asaas';
 
 //Instantiate a new client
-const client = new AsaasClient(process.env.ASAAS_API_KEY, {
-  //baseUrl?: string (default: https://www.asaas.com/api/v3);
+const asaas = new AsaasClient(process.env.ASAAS_API_KEY, {
+  //baseUrl?: string (default: https://api.asaas.com/v3);
   //sandbox?: boolean;
   //sandboxUrl?: string (default: https://sandbox.asaas.com/api/v3);
 });
@@ -56,29 +61,29 @@ To enable Sandbox Mode, pass to the client's constructor, as the second paramete
 ```javascript
 import { AsaasClient } from 'asaas';
 
-const client = new AsaasClient(process.env.ASAAS_API_KEY, {
+const asaas = new AsaasClient(process.env.ASAAS_API_KEY, {
   sandbox: true;
   //sandboxUrl?: string (default: https://sandbox.asaas.com/api/v3);
-  //baseUrl?: string (default: https://www.asaas.com/api/v3);
+  //baseUrl?: string (default: https://api.asaas.com/v3);
 });
 ```
 
 ### Customers
 
 #### Return all customers
-Returns customers. Filters can be applied, passing an object with the items allowed in the [official documentation](https://asaasv3.docs.apiary.io/#reference/0/clientes/listar-clientes).
+Returns customers. Filters can be applied, passing an object with the items allowed in the [official documentation](https://docs.asaas.com/reference/listar-clientes).
 
 ```javascript
 import { AsaasClient } from 'asaas';
 
-const client = new AsaasClient(process.env.ASAAS_API_KEY, {
+const asaas = new AsaasClient(process.env.ASAAS_API_KEY, {
   // sandbox: boolean;
   //sandboxUrl?: string (default: https://sandbox.asaas.com/api/v3);
-  //baseUrl?: string (default: https://www.asaas.com/api/v3);
+  //baseUrl?: string (default: https://api.asaas.com/v3);
 });
 
 //It lists all registered customers and makes a filter by email.
-await client.customers.list({
+await asaas.customers.list({
   email: "email@email.com"
 });
 ```
@@ -98,14 +103,14 @@ await client.customers.list({
 ```javascript
 import { AsaasClient } from 'asaas';
 
-const client = new AsaasClient(process.env.ASAAS_API_KEY, {
+const asaas = new AsaasClient(process.env.ASAAS_API_KEY, {
   // sandbox: boolean;
   //sandboxUrl?: string (default: https://sandbox.asaas.com/api/v3);
-  //baseUrl?: string (default: https://www.asaas.com/api/v3);
+  //baseUrl?: string (default: https://api.asaas.com/v3);
 });
 
 //It returns a customer by ID.
-await client.customers.getById("cus_123abcde456");
+await asaas.customers.getById("cus_123abcde456");
 ```
 
 | Parameter   | Type       | Description                           |
@@ -116,19 +121,19 @@ await client.customers.getById("cus_123abcde456");
 ### Payments
 
 #### Return all payments
-Returns payments. Filters can be applied, passing an object with the items allowed in the [official documentation](https://asaasv3.docs.apiary.io/#reference/0/cobrancas/listar-cobrancas).
+Returns payments. Filters can be applied, passing an object with the items allowed in the [official documentation](https://docs.asaas.com/reference/listar-cobrancas).
 
 ```javascript
 import { AsaasClient } from 'asaas';
 
-const client = new AsaasClient(process.env.ASAAS_API_KEY, {
+const asaas = new AsaasClient(process.env.ASAAS_API_KEY, {
   // sandbox: boolean;
   //sandboxUrl?: string (default: https://sandbox.asaas.com/api/v3);
-  //baseUrl?: string (default: https://www.asaas.com/api/v3);
+  //baseUrl?: string (default: https://api.asaas.com/v3);
 });
 
 //It lists all registered payments and makes a filter by customer ID.
-await client.payments.list({
+await asaas.payments.list({
   customer: "cus_123abcde456"
 });
 ```
@@ -163,19 +168,41 @@ await client.payments.list({
 ```javascript
 import { AsaasClient } from 'asaas';
 
-const client = new AsaasClient(process.env.ASAAS_API_KEY, {
+const asaas = new AsaasClient(process.env.ASAAS_API_KEY, {
   // sandbox: boolean;
   //sandboxUrl?: string (default: https://sandbox.asaas.com/api/v3);
-  //baseUrl?: string (default: https://www.asaas.com/api/v3);
+  //baseUrl?: string (default: https://api.asaas.com/v3);
 });
 
 //It returns a payment object by ID.
-await client.payments.getById("pay_080225913252");
+await asaas.payments.getById("pay_0802152313252");
 ```
 
 | Parameter   | Type       | Description                           |
 | :---------- | :--------- | :------------------------------------------ |
 | `id`      | `string` | **Required**. Payment ID |
+
+
+### Subscriptions
+
+#### Return all subscriptions
+Returns subscriptions. Filters can be applied, passing an object with the items allowed in the [official documentation](https://docs.asaas.com/reference/listar-assinaturas).
+
+```javascript
+import { AsaasClient } from 'asaas';
+
+const asaas = new AsaasClient(process.env.ASAAS_API_KEY, {
+  // sandbox: boolean;
+  //sandboxUrl?: string (default: https://sandbox.asaas.com/api/v3);
+  //baseUrl?: string (default: https://api.asaas.com/v3);
+});
+
+//List subscriptions for a specific customer ID.
+await asaas.subscriptions.list({
+  customer: "cus_123abcde456"
+});
+```
+
 
 
 ## Contributing

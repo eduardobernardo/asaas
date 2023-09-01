@@ -59,12 +59,12 @@ export interface IListCustomersParams {
 }
 
 export interface IListAsaasCustomerResponse {
-  object?:     string;
-  hasMore?:    boolean;
-  totalCount?: number;
-  limit?:      number;
-  offset?:     number;
-  data?:       IAsaasCustomerResponse[];
+  object:     string;
+  hasMore:    boolean;
+  totalCount: number;
+  limit:      number;
+  offset:     number;
+  data:       IAsaasCustomerResponse[];
 }
 
 export interface IAsaasDeleteResponse {
@@ -285,4 +285,119 @@ export interface IListAsaasInstallmentsResponse {
 export interface IInstallmentsParams {
   sort?:                      string;
   order?:                     string;
+}
+
+//Subscriptions
+export interface ICreateSubscriptionParams {
+  customer:               string;
+  billingType:            string;
+  value:                  number;
+  nextDueDate:            string;
+  discount?:              Discount;
+  interest?:              Fine;
+  fine?:                  Fine;
+  cycle:                  string;
+  description?:           string;
+  endDate?:               string;
+  maxPayments?:           number;
+  updatePendingPayments?: boolean;
+  externalReference?:     string;
+  split?:                 Split;
+  creditCard?:            CreditCard;
+  creditCardHolderInfo?:  CreditCardHolderInfo;
+  creditCardToken?:       string;
+  remoteIp?:              string;
+}
+
+export interface IListSubscriptionsParams {
+  customer?:                    string;
+  customerGroupName?:           string;
+  billingType?:                 string;
+  status?:                      string;
+  deletedOnly?:                 boolean;
+  includeDeleted?:              boolean;
+  externalReference?:           string;
+  order?:                       string;
+  sort?:                        string;
+  offset?:                      number;
+  limit?:                       number;
+}
+
+export interface IListSubscriptionsResponse {
+  object?:     string;
+  hasMore?:    boolean;
+  totalCount?: number;
+  limit?:      number;
+  offset?:     number;
+  data?:       ISubscription[];
+}
+
+export interface IUpdateSubscriptionParams {
+  billingType:            string;
+  nextDueDate:            string;
+  value:                  number;
+  discount?:              Discount;
+  interest?:              Fine;
+  fine?:                  Fine;
+  cycle:                  string;
+  description?:           string;
+  updatePendingPayments?: boolean;
+  externalReference?:     string;
+}
+
+export interface ISubscription {
+  object?:          string;
+  id?:              string;
+  dateCreated?:     string;
+  customer?:        string;
+  paymentLink?:     string;
+  billingType?:     string;
+  value?:           number;
+  cycle?:           string;
+  nextDueDate?:     string;
+  description?:     string;
+  status?:          string;
+  deleted?:         boolean;
+  discount?:        Discount;
+  fine?:            Fine;
+  interest?:        Fine;
+  creditCard?:      CreditCardResponse;
+}
+
+export interface ISubscriptionPayment {
+  object?:                string;
+  id?:                    string;
+  dateCreated?:           string;
+  customer?:              string;
+  paymentLink?:           string;
+  value?:                 number;
+  netValue?:              number;
+  originalValue?:         string;
+  interestValue?:         string;
+  description?:           string;
+  billingType?:           string;
+  canBePaidAfterDueDate?: boolean;
+  status?:                string;
+  dueDate?:               string;
+  originalDueDate?:       string;
+  paymentDate?:           string;
+  clientPaymentDate?:     string;
+  installmentNumber?:     string;
+  invoiceUrl?:            string;
+  invoiceNumber?:         string;
+  externalReference?:     string;
+  deleted?:               boolean;
+  bankSlipUrl?:           string;
+  postalService?:         boolean;
+  anticipated?:           boolean;
+  anticipable?:           boolean;
+}
+
+export interface IListSubscriptionPaymentsResponse {
+  object?:     string;
+  hasMore?:    boolean;
+  totalCount?: number;
+  limit?:      number;
+  offset?:     number;
+  data?:       ISubscriptionPayment[];
 }
