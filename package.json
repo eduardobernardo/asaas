@@ -10,7 +10,7 @@
   "scripts": {
     "test": "jest",
     "build": "tsc",
-    "lint": "eslint src/index.ts",
+    "lint": "eslint --ext .ts --ext .tsx ./src --fix",
     "prepare": "husky install"
   },
   "keywords": [
@@ -26,6 +26,8 @@
   "devDependencies": {
     "@babel/core": "^7.22.11",
     "@babel/preset-env": "^7.22.14",
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
     "@types/jest": "^29.5.4",
     "@types/node": "^18.14.0",
     "@types/node-fetch": "^2.6.2",
