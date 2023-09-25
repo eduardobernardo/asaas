@@ -1,0 +1,10 @@
+# Ignore artifacts:
+build
+coverage
+doc
+logs
+node_modules
+private
+public
+scripts
+views
