@@ -1,5 +1,5 @@
 {
-  "name": "asaas-client",
+  "name": "asaas",
   "version": "1.0.7",
   "description": "Unofficial Asaas Payment Gateway SDK",
   "main": "dist/index.js",
