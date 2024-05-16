@@ -3,7 +3,7 @@
 
 A simple sdk made to abstract most of the Asaas payment gateway api requests.
 
-last update: 01/09/2023
+last update: 16/05/2024
 Items updated:
 - Documentation URL (Developer Center)
 - new API URL
