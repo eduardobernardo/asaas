@@ -425,23 +425,25 @@ export interface IPixTransaction {
   refusalReason?: string;
   canBeCanceled: boolean;
   originalTransaction?: string;
-  externalAccount: {
-    ispb: number;
-    ispbName: string;
-    name: string;
-    agency: string;
-    account: string;
-    accountDigit: string;
-    accountType: string;
-    cpfCnpj: string;
-    addressKey: string;
-    addressKeyType: string;
-  };
+  externalAccount: PixTransactionExternalAccount;
   qrCode?: string;
   payment?: string;
-  addressKey: string;
-  addressKeyType: string;
+  addressKey?: string;
+  addressKeyType?: string;
   externalReference?: string;
+}
+
+export interface PixTransactionExternalAccount {
+  ispb: number;
+  ispbName: string;
+  name: string;
+  agency: string;
+  account: string;
+  accountDigit: string;
+  accountType: string;
+  cpfCnpj: string;
+  addressKey?: string;
+  addressKeyType?: string;
 }
 
 export interface IListPixTransactionsResponse {
