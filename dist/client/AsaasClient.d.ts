@@ -4,6 +4,7 @@ import { InstallmentsAPI } from './Installments';
 import { PaymentsAPI } from './Payments';
 import { SubscriptionsAPI } from './Subscriptions';
 import { Webhooks } from './Webhooks';
+import { PixTransactionsAPI } from './PixTransactions';
 export declare class AsaasClient {
   private apiKey;
   customers: CustomersAPI;
@@ -11,5 +12,7 @@ export declare class AsaasClient {
   installments: InstallmentsAPI;
   subscriptions: SubscriptionsAPI;
   webhooks: Webhooks;
+  pixTransactions: PixTransactionsAPI;
   constructor(apiKey: string, options?: AsaasOptions);
+  getUrl(options?: AsaasOptions): string;
 }
