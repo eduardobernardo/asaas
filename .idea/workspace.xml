@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a5f1ae3-c377-4872-aa45-284366070b0a" name="Changes" comment="feat: pix transactions list">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/types/AsaasTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/AsaasTypes.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +105,7 @@
       <option name="presentableId" value="Default" />
       <updated>1720486773931</updated>
       <workItem from="1720486774973" duration="5531000" />
-      <workItem from="1720526745196" duration="1340000" />
+      <workItem from="1720526745196" duration="1686000" />
     </task>
     <servers />
   </component>
