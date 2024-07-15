@@ -5,6 +5,7 @@ import { InstallmentsAPI } from './Installments';
 import { PaymentsAPI } from './Payments';
 import { SubscriptionsAPI } from './Subscriptions';
 import { Webhooks } from './Webhooks';
+import { PixTransactionsAPI } from './PixTransactions';
 
 export class AsaasClient {
   public customers: CustomersAPI;
@@ -12,14 +13,11 @@ export class AsaasClient {
   public installments: InstallmentsAPI;
   public subscriptions: SubscriptionsAPI;
   public webhooks: Webhooks;
+  public pixTransactions: PixTransactionsAPI;
 
   constructor(private apiKey: string, options: AsaasOptions = {}) {
     const apiClient = axios.create({
-      baseURL: options.sandbox
-        ? options.sandboxUrl || 'https://sandbox.asaas.com/api/v3'
-        : options.baseUrl
-        ? options.baseUrl
-        : 'https://api.asaas.com/v3',
+      baseURL: this.getUrl(options),
       headers: {
         common: {
           access_token: this.apiKey,
@@ -32,5 +30,13 @@ export class AsaasClient {
     this.installments = new InstallmentsAPI(apiClient);
     this.subscriptions = new SubscriptionsAPI(apiClient);
     this.webhooks = new Webhooks();
+    this.pixTransactions = new PixTransactionsAPI(apiClient);
+  }
+
+  getUrl(options: AsaasOptions = {}) {
+    if (options.sandbox) {
+      return options.sandboxUrl || 'https://sandbox.asaas.com/api/v3';
+    }
+    return options.baseUrl || 'https://api.asaas.com/v3';
   }
 }
