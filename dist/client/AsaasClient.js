@@ -19,8 +19,6 @@ class AsaasClient {
         },
       },
     });
-    if (!options.sandbox) throw new Error('Opções não informadas');
-    if (!this.apiKey) throw new Error('API Key não informada');
     this.customers = new Customers_1.CustomersAPI(apiClient);
     this.payments = new Payments_1.PaymentsAPI(apiClient);
     this.installments = new Installments_1.InstallmentsAPI(apiClient);
