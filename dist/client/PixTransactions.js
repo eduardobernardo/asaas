@@ -51,5 +51,16 @@ class PixTransactionsAPI {
       }
     });
   }
+  getById(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+      try {
+        const response = yield this.apiClient.get(`/pix/transactions/${id}`);
+        return response.data;
+      } catch (error) {
+        console.error('Erro ao obter o transação Pix:', error);
+        throw error;
+      }
+    });
+  }
 }
 exports.PixTransactionsAPI = PixTransactionsAPI;
