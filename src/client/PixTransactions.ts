@@ -31,4 +31,16 @@ export class PixTransactionsAPI {
       throw error;
     }
   }
+
+  async cancel(id: string): Promise<IPixTransaction> {
+    try {
+      const response = await this.apiClient.post(
+        `/pix/transactions/${id}/cancel`,
+      );
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao obter o transação Pix:');
+      throw error;
+    }
+  }
 }

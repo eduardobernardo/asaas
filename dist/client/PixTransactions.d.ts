@@ -11,4 +11,5 @@ export declare class PixTransactionsAPI {
     params?: IListPixTransactionsParams,
   ): Promise<IListPixTransactionsResponse>;
   getById(id: string): Promise<IPixTransaction>;
+  cancel(id: string): Promise<IPixTransaction>;
 }
