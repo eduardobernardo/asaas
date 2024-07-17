@@ -85,6 +85,7 @@ export interface IAsaasPayment {
   postalService?: boolean;
   authorizedOnly?: boolean;
   split?: Split;
+  callback?: Callback;
 }
 export interface IAsaasPaymentResponse {
   object?: string;
@@ -277,6 +278,7 @@ export interface ICreateSubscriptionParams {
   creditCardHolderInfo?: CreditCardHolderInfo;
   creditCardToken?: string;
   remoteIp?: string;
+  callback?: Callback;
 }
 export interface IListSubscriptionsParams {
   customer?: string;
@@ -417,4 +419,8 @@ export interface IListPixTransactionsResponse {
 }
 export interface IListPixTransactionsParams {
   offset?: number;
+}
+export interface Callback {
+  successUrl: string;
+  autoRedirect?: boolean;
 }

@@ -308,7 +308,7 @@ export interface ICreateSubscriptionParams {
   creditCardHolderInfo?: CreditCardHolderInfo;
   creditCardToken?: string;
   remoteIp?: string;
-  callback?: Callback
+  callback?: Callback;
 }
 
 export interface IListSubscriptionsParams {
@@ -461,7 +461,7 @@ export interface IListPixTransactionsParams {
   offset?: number;
 }
 
-export interface Callback{
+export interface Callback {
   successUrl: string;
-  autoRedirect?: boolean
+  autoRedirect?: boolean;
 }
