@@ -2,6 +2,16 @@ export interface AsaasOptions {
   sandbox?: boolean;
   sandboxUrl?: string;
   baseUrl?: string;
+  userAgent?: string;
+}
+
+export interface IAsaasPagination<T> {
+  object: 'list';
+  hasMore: boolean;
+  totalCount: number;
+  limit: number;
+  offset: number;
+  data: T[];
 }
 
 export interface IAsaasCustomer {
@@ -459,6 +469,29 @@ export interface IListPixTransactionsResponse {
 
 export interface IListPixTransactionsParams {
   offset?: number;
+}
+
+export interface IPixStaticQrCode {
+  addressKey: string;
+  description?: string;
+  value: number;
+  format?: string;
+  expirationDate?: string;
+  expirationSeconds?: number;
+  allowsMultiplePayments?: boolean;
+}
+
+export interface IPixStaticQrCodeResponse {
+  id: string;
+  encodedImage?: string;
+  payload?: string;
+  allowsMultiplePayments: boolean;
+  expirationDate: string;
+}
+
+export interface Callback {
+  successUrl: string;
+  autoRedirect?: boolean;
 }
 
 export interface IPixStaticQrCode {
