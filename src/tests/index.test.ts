@@ -1,4 +1,8 @@
 import { AsaasClient } from '../client/AsaasClient';
+import { WebhooksAPI } from '../client/Webhooks';
+
+import webhookPaymentJSON from './fixtures/webhook_payment.json';
+import invalidWebhookJSON from './fixtures/invalid_webhook.json';
 
 jest.mock('axios');
 describe('AsaasClient', () => {
@@ -11,8 +15,29 @@ describe('AsaasClient', () => {
     expect(client.payments).toBeDefined();
     expect(client.installments).toBeDefined();
     expect(client.subscriptions).toBeDefined();
-    expect(client.webhooks.payments).toBeDefined();
+    expect(client.webhooks).toBeDefined();
     expect(client.pixTransactions).toBeDefined();
     expect(client.pixQrCodes).toBeDefined();
+    expect(client.invoices).toBeDefined();
+  });
+});
+
+describe('Webhooks', () => {
+  test('parse de payment webhook', () => {
+    const parsed = WebhooksAPI.parsePayload({ ...webhookPaymentJSON });
+    expect(parsed).not.toBeNull();
+
+    // typescript infer no atributo payment
+    expect(
+      parsed && 'payment' in parsed ? parsed.payment.id : null,
+    ).not.toBeNull();
+
+    // typescript infer no atributo invoice
+    expect(parsed && 'invoice' in parsed ? parsed.invoice.id : null).toBeNull();
+  });
+
+  test('parse de webhook não mapeado deve retornar null', () => {
+    const parsed = WebhooksAPI.parsePayload({ ...invalidWebhookJSON });
+    expect(parsed).toBeNull();
   });
 });

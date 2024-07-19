@@ -1,5 +1,8 @@
 import { IAsaasDeleteResponse } from '@/types/AsaasTypes';
 import {
+  IAsaasWebhook,
+  IAsaasWebhookInvoice,
+  IAsaasWebhookPayment,
   ICreateWebhookParams,
   IListWebhooksResponse,
   IUpdateWebhookParams,
@@ -9,6 +12,18 @@ import { AxiosInstance } from 'axios';
 
 export class WebhooksAPI {
   constructor(private apiClient: AxiosInstance) {}
+
+  static parsePayload(payload: { event: string }): IAsaasWebhook | null {
+    if (payload.event.startsWith('PAYMENT_')) {
+      return payload as IAsaasWebhookPayment;
+    }
+
+    if (payload.event.startsWith('INVOICE_')) {
+      return payload as IAsaasWebhookInvoice;
+    }
+
+    return null;
+  }
 
   async create(params?: ICreateWebhookParams): Promise<IWebhookResponse> {
     try {
