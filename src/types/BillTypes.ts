@@ -12,8 +12,6 @@ export interface ICreateBillParams {
   externalReference?: string;
 }
 
-export type IUpdateBillParams = ICreateBillParams;
-
 export type BillStatusType =
   | 'PENDING'
   | 'PAID'

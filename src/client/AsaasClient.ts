@@ -8,6 +8,7 @@ import { WebhooksAPI } from './Webhooks';
 import { PixTransactionsAPI } from './PixTransactions';
 import { PixQrCodesAPI } from './PixQrCodes';
 import { InvoicesAPI } from './Invoices';
+import { BillAPI } from './Bill';
 
 export class AsaasClient {
   public customers: CustomersAPI;
@@ -18,6 +19,7 @@ export class AsaasClient {
   public pixTransactions: PixTransactionsAPI;
   public pixQrCodes: PixQrCodesAPI;
   public invoices: InvoicesAPI;
+  public bill: BillAPI;
 
   constructor(private apiKey: string, options: AsaasOptions = {}) {
     const apiClient = axios.create({
@@ -38,6 +40,7 @@ export class AsaasClient {
     this.pixTransactions = new PixTransactionsAPI(apiClient);
     this.pixQrCodes = new PixQrCodesAPI(apiClient);
     this.invoices = new InvoicesAPI(apiClient);
+    this.bill = new BillAPI(apiClient);
   }
 
   getUrl(options: AsaasOptions = {}) {
