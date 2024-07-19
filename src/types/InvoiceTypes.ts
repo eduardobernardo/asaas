@@ -27,9 +27,9 @@ export interface ICreateInvoiceParams {
   taxes: IInvoiceTaxes;
 }
 
-export type IUpdateInvoiceParams = ICreateInvoiceParams
+export type IUpdateInvoiceParams = ICreateInvoiceParams;
 
-export type InvoiceType =
+export type InvoiceStatusType =
   | 'SCHEDULED'
   | 'SYNCHRONIZED'
   | 'AUTHORIZED'
@@ -42,7 +42,7 @@ export interface IInvoiceResponse extends ICreateInvoiceParams {
   object: string;
   id: string;
   type: string;
-  status: InvoiceType;
+  status: InvoiceStatusType;
   statusDescription: string;
   pdfUrl: string;
   xmlUrl: string;
@@ -59,10 +59,10 @@ export interface IListInvoicesParams {
   payment?: string;
   installment?: string;
   externalReference?: string;
-  status?: InvoiceType;
+  status?: InvoiceStatusType;
   customer?: string;
   offset?: number;
   limit?: number;
 }
 
-export type IListInvoicesResponse = IAsaasPagination<IInvoiceResponse>
+export type IListInvoicesResponse = IAsaasPagination<IInvoiceResponse>;
