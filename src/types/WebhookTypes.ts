@@ -1,6 +1,7 @@
 import { InvoicesWebhook } from '@/enums/InvoicesWebhook';
 import { PaymentsWebhook } from '@/enums/PaymentsWebhook';
 import { IAsaasPagination, IAsaasPaymentResponse } from '@/types/AsaasTypes';
+import { IInvoiceResponse } from './InvoiceTypes';
 
 export interface ICreateWebhookParams {
   name: string;
@@ -35,7 +36,7 @@ export interface IAsaasWebhookPayment extends IAsaasWebhookBase {
 
 export interface IAsaasWebhookInvoice extends IAsaasWebhookBase {
   event: InvoicesWebhook;
-  invoice: unknown; // @TO-DO arrumar
+  invoice: IInvoiceResponse;
 }
 
 export type IAsaasWebhook = IAsaasWebhookPayment | IAsaasWebhookInvoice;
