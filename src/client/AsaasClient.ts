@@ -4,7 +4,7 @@ import { CustomersAPI } from './Customers';
 import { InstallmentsAPI } from './Installments';
 import { PaymentsAPI } from './Payments';
 import { SubscriptionsAPI } from './Subscriptions';
-import { Webhooks } from './Webhooks';
+import { WebhooksAPI } from './Webhooks';
 import { PixTransactionsAPI } from './PixTransactions';
 import { PixQrCodesAPI } from './PixQrCodes';
 
@@ -13,7 +13,7 @@ export class AsaasClient {
   public payments: PaymentsAPI;
   public installments: InstallmentsAPI;
   public subscriptions: SubscriptionsAPI;
-  public webhooks: Webhooks;
+  public webhooks: WebhooksAPI;
   public pixTransactions: PixTransactionsAPI;
   public pixQrCodes: PixQrCodesAPI;
 
@@ -22,6 +22,7 @@ export class AsaasClient {
       baseURL: this.getUrl(options),
       headers: {
         common: {
+          'User-Agent': options.userAgent ?? 'npm/asaas',
           access_token: this.apiKey,
         },
       },
@@ -31,7 +32,7 @@ export class AsaasClient {
     this.payments = new PaymentsAPI(apiClient);
     this.installments = new InstallmentsAPI(apiClient);
     this.subscriptions = new SubscriptionsAPI(apiClient);
-    this.webhooks = new Webhooks();
+    this.webhooks = new WebhooksAPI(apiClient);
     this.pixTransactions = new PixTransactionsAPI(apiClient);
     this.pixQrCodes = new PixQrCodesAPI(apiClient);
   }
