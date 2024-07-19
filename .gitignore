@@ -1,6 +1,9 @@
 # Node modules
 node_modules/
 
+# JetBrains IDEs
+.idea*
+
 # Build output
 dist/
 build/
