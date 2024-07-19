@@ -33,47 +33,23 @@ var __awaiter =
     });
   };
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.PixTransactionsAPI = void 0;
-class PixTransactionsAPI {
+exports.PixQrCodesAPI = void 0;
+class PixQrCodesAPI {
   constructor(apiClient) {
     this.apiClient = apiClient;
   }
-  list(params) {
+  newStatic(params) {
     return __awaiter(this, void 0, void 0, function* () {
       try {
-        const response = yield this.apiClient.get('/pix/transactions', {
+        const response = yield this.apiClient.post('/pix/qrCodes/static', {
           params,
         });
         return response.data;
       } catch (error) {
-        console.error('Erro ao obter a lista de transações Pix:', error);
-        throw error;
-      }
-    });
-  }
-  getById(id) {
-    return __awaiter(this, void 0, void 0, function* () {
-      try {
-        const response = yield this.apiClient.get(`/pix/transactions/${id}`);
-        return response.data;
-      } catch (error) {
-        console.error('Erro ao obter o transação Pix:', error);
-        throw error;
-      }
-    });
-  }
-  cancel(id) {
-    return __awaiter(this, void 0, void 0, function* () {
-      try {
-        const response = yield this.apiClient.post(
-          `/pix/transactions/${id}/cancel`,
-        );
-        return response.data;
-      } catch (error) {
-        console.error('Erro ao obter o transação Pix:');
+        console.error('Erro ao criar QR Code estático:', error);
         throw error;
       }
     });
   }
 }
-exports.PixTransactionsAPI = PixTransactionsAPI;
+exports.PixQrCodesAPI = PixQrCodesAPI;

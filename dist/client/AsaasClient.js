@@ -8,6 +8,7 @@ const Payments_1 = require('./Payments');
 const Subscriptions_1 = require('./Subscriptions');
 const Webhooks_1 = require('./Webhooks');
 const PixTransactions_1 = require('./PixTransactions');
+const PixQrCodes_1 = require('./PixQrCodes');
 class AsaasClient {
   constructor(apiKey, options = {}) {
     this.apiKey = apiKey;
@@ -25,6 +26,7 @@ class AsaasClient {
     this.subscriptions = new Subscriptions_1.SubscriptionsAPI(apiClient);
     this.webhooks = new Webhooks_1.Webhooks();
     this.pixTransactions = new PixTransactions_1.PixTransactionsAPI(apiClient);
+    this.pixQrCodes = new PixQrCodes_1.PixQrCodesAPI(apiClient);
   }
   getUrl(options = {}) {
     if (options.sandbox) {
