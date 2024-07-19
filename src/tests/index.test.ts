@@ -1,5 +1,5 @@
-import { AsaasClient } from '../client/AsaasClient';
-import { WebhooksAPI } from '../client/Webhooks';
+// Preferência no import do index pra garantir que tudo relevante está sendo exportado
+import { AsaasClient, parseWebhookPayload } from '../index';
 
 import webhookPaymentJSON from './fixtures/webhook_payment.json';
 import invalidWebhookJSON from './fixtures/invalid_webhook.json';
@@ -24,7 +24,7 @@ describe('AsaasClient', () => {
 
 describe('Webhooks', () => {
   test('parse de payment webhook', () => {
-    const parsed = WebhooksAPI.parsePayload({ ...webhookPaymentJSON });
+    const parsed = parseWebhookPayload({ ...webhookPaymentJSON });
     expect(parsed).not.toBeNull();
 
     // typescript infer no atributo payment
@@ -37,7 +37,7 @@ describe('Webhooks', () => {
   });
 
   test('parse de webhook não mapeado deve retornar null', () => {
-    const parsed = WebhooksAPI.parsePayload({ ...invalidWebhookJSON });
+    const parsed = parseWebhookPayload({ ...invalidWebhookJSON });
     expect(parsed).toBeNull();
   });
 });

@@ -13,18 +13,6 @@ import { AxiosInstance } from 'axios';
 export class WebhooksAPI {
   constructor(private apiClient: AxiosInstance) {}
 
-  static parsePayload(payload: { event: string }): IAsaasWebhook | null {
-    if (payload.event.startsWith('PAYMENT_')) {
-      return payload as IAsaasWebhookPayment;
-    }
-
-    if (payload.event.startsWith('INVOICE_')) {
-      return payload as IAsaasWebhookInvoice;
-    }
-
-    return null;
-  }
-
   async create(params?: ICreateWebhookParams): Promise<IWebhookResponse> {
     try {
       const response = await this.apiClient.post('/webhooks', params);

@@ -68,14 +68,7 @@ export interface IListCustomersParams {
   limit?: number;
 }
 
-export interface IListAsaasCustomerResponse {
-  object: string;
-  hasMore: boolean;
-  totalCount: number;
-  limit: number;
-  offset: number;
-  data: IAsaasCustomerResponse[];
-}
+export type IListAsaasCustomerResponse = IAsaasPagination<IAsaasCustomerResponse>
 
 export interface IAsaasDeleteResponse {
   deleted?: boolean;
@@ -169,14 +162,7 @@ export interface IListPaymentsParams {
   limit?: number;
 }
 
-export interface IListAsaasPaymentsResponse {
-  object?: string;
-  hasMore?: boolean;
-  totalCount?: number;
-  limit?: number;
-  offset?: number;
-  data?: IAsaasPaymentResponse[];
-}
+export type IListAsaasPaymentsResponse = IAsaasPagination<IAsaasPaymentResponse>
 
 export interface IAsaasPaymentRefund {
   value?: number;
@@ -284,14 +270,7 @@ export interface Chargeback {
   reason?: string;
 }
 
-export interface IListAsaasInstallmentsResponse {
-  object?: string;
-  hasMore?: boolean;
-  totalCount?: number;
-  limit?: number;
-  offset?: number;
-  data?: IAsaasPaymentInstallment[];
-}
+export type IListAsaasInstallmentsResponse = IAsaasPagination<IAsaasPaymentInstallment>
 
 export interface IInstallmentsParams {
   sort?: string;
@@ -335,14 +314,7 @@ export interface IListSubscriptionsParams {
   limit?: number;
 }
 
-export interface IListSubscriptionsResponse {
-  object?: string;
-  hasMore?: boolean;
-  totalCount?: number;
-  limit?: number;
-  offset?: number;
-  data?: ISubscription[];
-}
+export type IListSubscriptionsResponse = IAsaasPagination<ISubscription>
 
 export interface IUpdateSubscriptionParams {
   billingType: string;
@@ -405,14 +377,7 @@ export interface ISubscriptionPayment {
   anticipable?: boolean;
 }
 
-export interface IListSubscriptionPaymentsResponse {
-  object?: string;
-  hasMore?: boolean;
-  totalCount?: number;
-  limit?: number;
-  offset?: number;
-  data?: ISubscriptionPayment[];
-}
+export type IListSubscriptionPaymentsResponse = IAsaasPagination<ISubscriptionPayment>
 
 export interface IPixTransaction {
   id: string;
@@ -458,14 +423,7 @@ export interface PixTransactionExternalAccount {
   addressKeyType?: string;
 }
 
-export interface IListPixTransactionsResponse {
-  object?: string;
-  hasMore?: boolean;
-  totalCount?: number;
-  limit?: number;
-  offset?: number;
-  data?: IPixTransaction[];
-}
+export type IListPixTransactionsResponse = IAsaasPagination<IPixTransaction>
 
 export interface IListPixTransactionsParams {
   offset?: number;
