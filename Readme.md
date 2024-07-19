@@ -33,7 +33,7 @@ Items updated:
  - [x] Bill [(Pagamento de contas)](https://docs.asaas.com/reference/criar-um-pagamento-de-conta)
  - [x] My Account [(Informações e personalização da conta)](https://docs.asaas.com/reference/recuperar-dados-comerciais)
  - [x] Accounts [(Subcontas Asaas)](https://docs.asaas.com/reference/criar-subconta)
- - [x] Webhooks [(Configurações de Webhooks)](https://docs.asaas.com/reference/criar-subconta)
+ - [x] Webhooks [(Configurações de Webhooks)](https://docs.asaas.com/reference/criar-novo-webhook)
  
 
 ## SDK Documentation
