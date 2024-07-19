@@ -30,6 +30,7 @@ Items updated:
  - [ ] Payment Links (soon) [(Payment Links)](https://docs.asaas.com/reference/criar-um-link-de-pagamentos)
  - [x] Transfers [(Transferências)](https://docs.asaas.com/reference/transferir-para-conta-de-outra-instituicao-ou-chave-pix)
  - [x] Invoices [(Notas fiscais)](https://docs.asaas.com/reference/agendar-nota-fiscal)
+ - [x] Bill [(Pagamento de contas)](https://docs.asaas.com/reference/criar-um-pagamento-de-conta)
  - [x] My Account [(Informações e personalização da conta)](https://docs.asaas.com/reference/recuperar-dados-comerciais)
  - [x] Accounts [(Subcontas Asaas)](https://docs.asaas.com/reference/criar-subconta)
  - [x] Webhooks [(Configurações de Webhooks)](https://docs.asaas.com/reference/criar-subconta)
@@ -209,6 +210,25 @@ await asaas.subscriptions.list({
 });
 ```
 
+### Webhooks
+
+#### Parse payload
+
+```javascript
+import { parseWebhookPayload } from 'asaas';
+
+const parsed = parseWebhookPayload(body);
+
+if (!parsed) {
+  console.error('event não suportado!');
+  return;
+}
+
+if ('payment' in parsed) { // infer IAsaasWebhookPayment
+  console.log(parsed.payment.id);
+  return;
+}
+```
 
 
 ## Contributing
