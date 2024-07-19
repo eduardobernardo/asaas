@@ -3,9 +3,13 @@
 
 A simple sdk made to abstract most of the Asaas payment gateway api requests.
 
-last update: 15/07/2024
+last update: 19/07/2024
 Items updated:
-- PIX Transactions List
+- Webhooks client: create, list, remove, and update.
+- Invoices client: schedule (create), list, update, authorize, and cancel.
+- Enums for webhook events for Payments and Invoices (still in development)
+- Added a static method `parseWebhook` to correctly check if the received event is valid and allow TypeScript inference.
+- Added support to change Axios user-agent.
 
 
 ## Author
