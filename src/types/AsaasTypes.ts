@@ -92,6 +92,7 @@ export interface IAsaasPayment {
   postalService?: boolean;
   authorizedOnly?: boolean;
   split?: Split;
+  callback?: Callback;
 }
 
 export interface IAsaasPaymentResponse {
@@ -307,6 +308,7 @@ export interface ICreateSubscriptionParams {
   creditCardHolderInfo?: CreditCardHolderInfo;
   creditCardToken?: string;
   remoteIp?: string;
+  callback?: Callback;
 }
 
 export interface IListSubscriptionsParams {
@@ -475,4 +477,9 @@ export interface IPixStaticQrCodeResponse {
   payload?: string;
   allowsMultiplePayments: boolean;
   expirationDate: string;
+}
+
+export interface Callback {
+  successUrl: string;
+  autoRedirect?: boolean;
 }
