@@ -13,5 +13,6 @@ describe('AsaasClient', () => {
     expect(client.subscriptions).toBeDefined();
     expect(client.webhooks.payments).toBeDefined();
     expect(client.pixTransactions).toBeDefined();
+    expect(client.pixQrCodes).toBeDefined();
   });
 });
