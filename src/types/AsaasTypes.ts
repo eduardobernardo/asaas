@@ -68,7 +68,8 @@ export interface IListCustomersParams {
   limit?: number;
 }
 
-export type IListAsaasCustomerResponse = IAsaasPagination<IAsaasCustomerResponse>
+export type IListAsaasCustomerResponse =
+  IAsaasPagination<IAsaasCustomerResponse>;
 
 export interface IAsaasDeleteResponse {
   deleted?: boolean;
@@ -162,7 +163,8 @@ export interface IListPaymentsParams {
   limit?: number;
 }
 
-export type IListAsaasPaymentsResponse = IAsaasPagination<IAsaasPaymentResponse>
+export type IListAsaasPaymentsResponse =
+  IAsaasPagination<IAsaasPaymentResponse>;
 
 export interface IAsaasPaymentRefund {
   value?: number;
@@ -270,7 +272,8 @@ export interface Chargeback {
   reason?: string;
 }
 
-export type IListAsaasInstallmentsResponse = IAsaasPagination<IAsaasPaymentInstallment>
+export type IListAsaasInstallmentsResponse =
+  IAsaasPagination<IAsaasPaymentInstallment>;
 
 export interface IInstallmentsParams {
   sort?: string;
@@ -314,7 +317,7 @@ export interface IListSubscriptionsParams {
   limit?: number;
 }
 
-export type IListSubscriptionsResponse = IAsaasPagination<ISubscription>
+export type IListSubscriptionsResponse = IAsaasPagination<ISubscription>;
 
 export interface IUpdateSubscriptionParams {
   billingType: string;
@@ -377,7 +380,8 @@ export interface ISubscriptionPayment {
   anticipable?: boolean;
 }
 
-export type IListSubscriptionPaymentsResponse = IAsaasPagination<ISubscriptionPayment>
+export type IListSubscriptionPaymentsResponse =
+  IAsaasPagination<ISubscriptionPayment>;
 
 export interface IPixTransaction {
   id: string;
@@ -423,7 +427,7 @@ export interface PixTransactionExternalAccount {
   addressKeyType?: string;
 }
 
-export type IListPixTransactionsResponse = IAsaasPagination<IPixTransaction>
+export type IListPixTransactionsResponse = IAsaasPagination<IPixTransaction>;
 
 export interface IListPixTransactionsParams {
   offset?: number;
@@ -450,4 +454,14 @@ export interface IPixStaticQrCodeResponse {
 export interface Callback {
   successUrl: string;
   autoRedirect?: boolean;
+}
+
+export interface ICity {
+  object: string;
+  id: number;
+  ibgeCode: string;
+  name: string;
+  districtCode: string;
+  district: string;
+  state: string;
 }

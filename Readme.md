@@ -23,11 +23,16 @@ Items updated:
  - [Asaas API Manual](https://docs.asaas.com/)
 
  ## Features
- - [x] Customers [(Customers Documentation)](https://docs.asaas.com/reference/criar-novo-cliente)
- - [x] Payments [(Payments Documentation)](https://docs.asaas.com/reference/criar-nova-cobranca)
- - [x] Installments [(Installments Documentation)](https://docs.asaas.com/reference/repurar-um-unico-parcelamento)
- - [x] Subscriptions [(Subscriptions Documentation)](https://docs.asaas.com/reference/criar-nova-assinatura)
- - [ ] Payment Links (soon) [(Payment Links Documentation)](https://docs.asaas.com/reference/criar-um-link-de-pagamentos)
+ - [x] Customers [(Clientes)](https://docs.asaas.com/reference/criar-novo-cliente)
+ - [x] Payments [(Cobranças)](https://docs.asaas.com/reference/criar-nova-cobranca)
+ - [x] Installments [(Parcelamentos)](https://docs.asaas.com/reference/repurar-um-unico-parcelamento)
+ - [x] Subscriptions [(Subscriptions)](https://docs.asaas.com/reference/criar-nova-assinatura)
+ - [ ] Payment Links (soon) [(Payment Links)](https://docs.asaas.com/reference/criar-um-link-de-pagamentos)
+ - [x] Transfers [(Transferências)](https://docs.asaas.com/reference/transferir-para-conta-de-outra-instituicao-ou-chave-pix)
+ - [x] Invoices [(Notas fiscais)](https://docs.asaas.com/reference/agendar-nota-fiscal)
+ - [x] My Account [(Informações e personalização da conta)](https://docs.asaas.com/reference/recuperar-dados-comerciais)
+ - [x] Accounts [(Subcontas Asaas)](https://docs.asaas.com/reference/criar-subconta)
+ - [x] Webhooks [(Configurações de Webhooks)](https://docs.asaas.com/reference/criar-subconta)
  
 
 ## SDK Documentation

@@ -9,6 +9,9 @@ import { PixTransactionsAPI } from './PixTransactions';
 import { PixQrCodesAPI } from './PixQrCodes';
 import { InvoicesAPI } from './Invoices';
 import { BillAPI } from './Bill';
+import { TransfersAPI } from './Transfers';
+import { MyAccountAPI } from './MyAccount';
+import { AccountsAPI } from './Accounts';
 
 export class AsaasClient {
   public customers: CustomersAPI;
@@ -20,6 +23,9 @@ export class AsaasClient {
   public pixQrCodes: PixQrCodesAPI;
   public invoices: InvoicesAPI;
   public bill: BillAPI;
+  public transfers: TransfersAPI;
+  public myAccount: MyAccountAPI;
+  public accounts: AccountsAPI;
 
   constructor(private apiKey: string, options: AsaasOptions = {}) {
     const apiClient = axios.create({
@@ -41,6 +47,9 @@ export class AsaasClient {
     this.pixQrCodes = new PixQrCodesAPI(apiClient);
     this.invoices = new InvoicesAPI(apiClient);
     this.bill = new BillAPI(apiClient);
+    this.transfers = new TransfersAPI(apiClient);
+    this.myAccount = new MyAccountAPI(apiClient);
+    this.accounts = new AccountsAPI(apiClient);
   }
 
   getUrl(options: AsaasOptions = {}) {
