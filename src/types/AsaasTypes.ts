@@ -493,26 +493,3 @@ export interface Callback {
   successUrl: string;
   autoRedirect?: boolean;
 }
-
-export interface IPixStaticQrCode {
-  addressKey: string;
-  description?: string;
-  value: number;
-  format?: string;
-  expirationDate?: string;
-  expirationSeconds?: number;
-  allowsMultiplePayments?: boolean;
-}
-
-export interface IPixStaticQrCodeResponse {
-  id: string;
-  encodedImage?: string;
-  payload?: string;
-  allowsMultiplePayments: boolean;
-  expirationDate: string;
-}
-
-export interface Callback {
-  successUrl: string;
-  autoRedirect?: boolean;
-}
