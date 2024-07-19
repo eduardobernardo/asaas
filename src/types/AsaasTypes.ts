@@ -2,6 +2,16 @@ export interface AsaasOptions {
   sandbox?: boolean;
   sandboxUrl?: string;
   baseUrl?: string;
+  userAgent?: string;
+}
+
+export interface IAsaasPagination<T> {
+  object: 'list';
+  hasMore: boolean;
+  totalCount: number;
+  limit: number;
+  offset: number;
+  data: T[];
 }
 
 export interface IAsaasCustomer {
