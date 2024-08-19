@@ -23,12 +23,28 @@ Items updated:
  - [Asaas API Manual](https://docs.asaas.com/)
 
  ## Features
- - [x] Customers [(Customers Documentation)](https://docs.asaas.com/reference/criar-novo-cliente)
- - [x] Payments [(Payments Documentation)](https://docs.asaas.com/reference/criar-nova-cobranca)
- - [x] Installments [(Installments Documentation)](https://docs.asaas.com/reference/repurar-um-unico-parcelamento)
- - [x] Subscriptions [(Subscriptions Documentation)](https://docs.asaas.com/reference/criar-nova-assinatura)
- - [ ] Payment Links (soon) [(Payment Links Documentation)](https://docs.asaas.com/reference/criar-um-link-de-pagamentos)
- 
+ - [x] Customers [(Clientes)](https://docs.asaas.com/reference/criar-novo-cliente)
+ - [x] Payments [(Cobranças)](https://docs.asaas.com/reference/criar-nova-cobranca)
+ - [ ] Notifications [(Notificações)](https://docs.asaas.com/reference/atualizar-notificacao-existente)
+ - [x] Installments [(Parcelamentos)](https://docs.asaas.com/reference/repurar-um-unico-parcelamento)
+ - [x] Subscriptions [(Assinaturas)](https://docs.asaas.com/reference/criar-nova-assinatura)
+ - [ ] Pix [(Pix)](https://docs.asaas.com/reference/criar-uma-chave)
+ - [ ] Pix Transactions [(Transações Pix)](https://docs.asaas.com/reference/pagar-um-qrcode)
+ - [ ] Payment Links (soon) [(Link de pagamentos)](https://docs.asaas.com/reference/criar-um-link-de-pagamentos)
+ - [x] Transfers [(Transferências)](https://docs.asaas.com/reference/transferir-para-conta-de-outra-instituicao-ou-chave-pix)
+ - [ ] Anticipations [(Antecipações)](https://docs.asaas.com/reference/solicitar-antecipacao)
+ - [ ] Payment Dunnings [(Negativações)](https://docs.asaas.com/reference/criar-uma-negativacao)
+ - [x] Bill [(Pagamento de contas)](https://docs.asaas.com/reference/criar-um-pagamento-de-conta)
+ - [ ] Mobile Phone Recharges [(Recargas de celular)](https://docs.asaas.com/reference/solicitar-recarga)
+ - [ ] Credit Bureau Report [(Consulta Serasa)](https://docs.asaas.com/reference/realizar-consulta)
+ - [ ] Financial Transactions [(Extrato)](https://docs.asaas.com/reference/recuperar-extrato)
+ - [ ] Finance [(Informações financeiras)](https://docs.asaas.com/reference/recuperar-saldo-da-conta)
+ - [x] My Account [(Informações e personalização da conta)](https://docs.asaas.com/reference/recuperar-dados-comerciais)
+ - [x] Invoices [(Notas fiscais)](https://docs.asaas.com/reference/agendar-nota-fiscal)
+ - [ ] Fiscal Info [(Informações fiscais)](https://docs.asaas.com/reference/listar-configuracoes-municipais)
+ - [x] Webhooks [(Configurações de Webhooks)](https://docs.asaas.com/reference/criar-novo-webhook)
+ - [x] Accounts [(Subcontas Asaas)](https://docs.asaas.com/reference/criar-subconta)
+ - [ ] Documents [(Envio de documentos White Label)](https://docs.asaas.com/reference/verificar-documentos-pendentes)
 
 ## SDK Documentation
 
@@ -204,6 +220,25 @@ await asaas.subscriptions.list({
 });
 ```
 
+### Webhooks
+
+#### Parse payload
+
+```javascript
+import { parseWebhookPayload } from 'asaas';
+
+const parsed = parseWebhookPayload(body);
+
+if (!parsed) {
+  console.error('event não suportado!');
+  return;
+}
+
+if ('payment' in parsed) { // infer IAsaasWebhookPayment
+  console.log(parsed.payment.id);
+  return;
+}
+```
 
 
 ## Contributing
