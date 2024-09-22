@@ -214,9 +214,12 @@ export interface CreditCardResponse {
   creditCardToken?: string;
 }
 
+export type DiscountType = 'FIXED' | 'PERCENTAGE';
+
 export interface Discount {
   value?: number;
   dueDateLimitDays?: number;
+  type?: DiscountType;
 }
 
 export interface Fine {
@@ -280,26 +283,36 @@ export interface IInstallmentsParams {
   order?: string;
 }
 
+export type SubscriptionCycleType =
+  | 'WEEKLY'
+  | 'BIWEEKLY'
+  | 'MONTHLY'
+  | 'BIMONTHLY'
+  | 'QUARTERLY'
+  | 'SEMIANNUALLY'
+  | 'YEARLY';
+
+export type SubscriptionBillingType =
+  | 'UNDEFINED'
+  | 'BOLETO'
+  | 'CREDIT_CARD'
+  | 'PIX';
+
 //Subscriptions
 export interface ICreateSubscriptionParams {
   customer: string;
-  billingType: string;
+  billingType: SubscriptionBillingType;
   value: number;
   nextDueDate: string;
   discount?: Discount;
   interest?: Fine;
   fine?: Fine;
-  cycle: string;
+  cycle: SubscriptionCycleType;
   description?: string;
   endDate?: string;
   maxPayments?: number;
-  updatePendingPayments?: boolean;
   externalReference?: string;
-  split?: Split;
-  creditCard?: CreditCard;
-  creditCardHolderInfo?: CreditCardHolderInfo;
-  creditCardToken?: string;
-  remoteIp?: string;
+  split?: Split[];
   callback?: Callback;
 }
 
@@ -319,17 +332,9 @@ export interface IListSubscriptionsParams {
 
 export type IListSubscriptionsResponse = IAsaasPagination<ISubscription>;
 
-export interface IUpdateSubscriptionParams {
-  billingType: string;
-  nextDueDate: string;
-  value: number;
-  discount?: Discount;
-  interest?: Fine;
-  fine?: Fine;
-  cycle: string;
-  description?: string;
+export interface IUpdateSubscriptionParams
+  extends Partial<ICreateSubscriptionParams> {
   updatePendingPayments?: boolean;
-  externalReference?: string;
 }
 
 export interface ISubscription {

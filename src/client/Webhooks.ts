@@ -1,8 +1,5 @@
 import { IAsaasDeleteResponse } from '@/types/AsaasTypes';
 import {
-  IAsaasWebhook,
-  IAsaasWebhookInvoice,
-  IAsaasWebhookPayment,
   ICreateWebhookParams,
   IListWebhooksResponse,
   IUpdateWebhookParams,
