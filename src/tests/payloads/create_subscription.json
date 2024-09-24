@@ -1,0 +1,34 @@
+{
+    "customer": "cus_0T1mdomVMi39",
+    "billingType": "BOLETO",
+    "value": 19.9,
+    "nextDueDate": "2017-05-15",
+    "discount": {
+      "value": 10,
+      "dueDateLimitDays": 0,
+      "type": "PERCENTAGE"
+    },
+    "interest": {
+      "value": null
+    },
+    "fine": {
+      "value": null,
+      "type": "FIXED"
+    },
+    "cycle": "MONTHLY",
+    "description": "Assinatura Plano Pró",
+    "endDate": null,
+    "maxPayments": null,
+    "externalReference": null,
+    "split": [
+      {
+        "walletId": null,
+        "fixedValue": null,
+        "percentualValue": null
+      }
+    ],
+    "callback": {
+      "successUrl": null,
+      "autoRedirect": null
+    }
+  }

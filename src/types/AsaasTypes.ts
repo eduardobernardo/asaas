@@ -230,6 +230,7 @@ export interface Split {
   walletId: string;
   fixedValue?: number;
   percentualValue?: number;
+  description?: string;
 }
 
 export interface IAsaasPaymentLimitResponse {
@@ -298,7 +299,8 @@ export type SubscriptionBillingType =
   | 'CREDIT_CARD'
   | 'PIX';
 
-//Subscriptions
+// Subscriptions
+// https://docs.asaas.com/reference/criar-nova-assinatura
 export interface ICreateSubscriptionParams {
   customer: string;
   billingType: SubscriptionBillingType;
@@ -314,6 +316,15 @@ export interface ICreateSubscriptionParams {
   externalReference?: string;
   split?: Split[];
   callback?: Callback;
+}
+
+// https://docs.asaas.com/reference/criar-assinatura-com-cartao-de-credito
+export interface ICreateSubscriptionWithCreditCardParams
+  extends ICreateSubscriptionParams {
+  creditCard?: CreditCard;
+  creditCardHolderInfo?: CreditCardHolderInfo;
+  creditCardToken?: string;
+  remoteIp?: string;
 }
 
 export interface IListSubscriptionsParams {
