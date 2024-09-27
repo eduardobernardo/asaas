@@ -64,8 +64,8 @@ export interface ITransferResponse
   netValue: number;
   status: TransferStatusType;
   transferFee: number;
-  effectiveDate: any;
-  endToEndIdentifier: any;
+  effectiveDate: string;
+  endToEndIdentifier: string | null;
   authorized: boolean;
   failReason: string;
   bankAccount: IBankAccountResponse;
