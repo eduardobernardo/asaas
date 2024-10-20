@@ -343,9 +343,12 @@ export interface IListSubscriptionsParams {
 
 export type IListSubscriptionsResponse = IAsaasPagination<ISubscription>;
 
+export type SubscriptionStatusType = "ACTIVE" | "INACTIVE";
+
 export interface IUpdateSubscriptionParams
   extends Partial<ICreateSubscriptionParams> {
   updatePendingPayments?: boolean;
+  status?: SubscriptionStatusType;
 }
 
 export interface ISubscription {
