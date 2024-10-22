@@ -214,9 +214,12 @@ export interface CreditCardResponse {
   creditCardToken?: string;
 }
 
+export type DiscountType = 'FIXED' | 'PERCENTAGE';
+
 export interface Discount {
   value?: number;
   dueDateLimitDays?: number;
+  type?: DiscountType;
 }
 
 export interface Fine {
@@ -227,6 +230,7 @@ export interface Split {
   walletId: string;
   fixedValue?: number;
   percentualValue?: number;
+  description?: string;
 }
 
 export interface IAsaasPaymentLimitResponse {
@@ -280,27 +284,47 @@ export interface IInstallmentsParams {
   order?: string;
 }
 
-//Subscriptions
+export type SubscriptionCycleType =
+  | 'WEEKLY'
+  | 'BIWEEKLY'
+  | 'MONTHLY'
+  | 'BIMONTHLY'
+  | 'QUARTERLY'
+  | 'SEMIANNUALLY'
+  | 'YEARLY';
+
+export type SubscriptionBillingType =
+  | 'UNDEFINED'
+  | 'BOLETO'
+  | 'CREDIT_CARD'
+  | 'PIX';
+
+// Subscriptions
+// https://docs.asaas.com/reference/criar-nova-assinatura
 export interface ICreateSubscriptionParams {
   customer: string;
-  billingType: string;
+  billingType: SubscriptionBillingType;
   value: number;
   nextDueDate: string;
   discount?: Discount;
   interest?: Fine;
   fine?: Fine;
-  cycle: string;
+  cycle: SubscriptionCycleType;
   description?: string;
   endDate?: string;
   maxPayments?: number;
-  updatePendingPayments?: boolean;
   externalReference?: string;
-  split?: Split;
+  split?: Split[];
+  callback?: Callback;
+}
+
+// https://docs.asaas.com/reference/criar-assinatura-com-cartao-de-credito
+export interface ICreateSubscriptionWithCreditCardParams
+  extends ICreateSubscriptionParams {
   creditCard?: CreditCard;
   creditCardHolderInfo?: CreditCardHolderInfo;
   creditCardToken?: string;
   remoteIp?: string;
-  callback?: Callback;
 }
 
 export interface IListSubscriptionsParams {
@@ -319,17 +343,12 @@ export interface IListSubscriptionsParams {
 
 export type IListSubscriptionsResponse = IAsaasPagination<ISubscription>;
 
-export interface IUpdateSubscriptionParams {
-  billingType: string;
-  nextDueDate: string;
-  value: number;
-  discount?: Discount;
-  interest?: Fine;
-  fine?: Fine;
-  cycle: string;
-  description?: string;
+export type SubscriptionStatusType = "ACTIVE" | "INACTIVE";
+
+export interface IUpdateSubscriptionParams
+  extends Partial<ICreateSubscriptionParams> {
   updatePendingPayments?: boolean;
-  externalReference?: string;
+  status?: SubscriptionStatusType;
 }
 
 export interface ISubscription {
