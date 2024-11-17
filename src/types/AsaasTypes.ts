@@ -84,11 +84,13 @@ export interface IAsaasPayment {
   value: number;
   description?: string;
   externalReference?: string;
+  paymentExternalReference?: string;
   creditCard?: CreditCard;
   creditCardHolderInfo?: CreditCardHolderInfo;
   creditCardToken?: string;
   installmentCount?: number;
   installmentValue?: number;
+  totalValue?: number;
   remoteIp?: string;
   discount?: Discount;
   fine?: Fine;
@@ -343,7 +345,7 @@ export interface IListSubscriptionsParams {
 
 export type IListSubscriptionsResponse = IAsaasPagination<ISubscription>;
 
-export type SubscriptionStatusType = "ACTIVE" | "INACTIVE";
+export type SubscriptionStatusType = 'ACTIVE' | 'INACTIVE';
 
 export interface IUpdateSubscriptionParams
   extends Partial<ICreateSubscriptionParams> {
