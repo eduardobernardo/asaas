@@ -3,13 +3,9 @@
 
 A simple sdk made to abstract most of the Asaas payment gateway api requests.
 
-last update: 19/07/2024
+last update: 17/11/2024
 Items updated:
-- Webhooks client: create, list, remove, and update.
-- Invoices client: schedule (create), list, update, authorize, and cancel.
-- Enums for webhook events for Payments and Invoices (still in development)
-- Added a static method `parseWebhook` to correctly check if the received event is valid and allow TypeScript inference.
-- Added support to change Axios user-agent.
+- Payments: Added support for installment total value and payment external reference.
 
 
 ## Author
