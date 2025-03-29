@@ -6,9 +6,13 @@ import {
   IListAccountsResponse,
 } from '@/types/AccountTypes';
 import { AxiosInstance } from 'axios';
+import { BaseAPI } from './BaseAPI';
+import { APIOptions } from '@/types/AsaasTypes';
 
-export class AccountsAPI {
-  constructor(private apiClient: AxiosInstance) {}
+export class AccountsAPI extends BaseAPI {
+  constructor(apiClient: AxiosInstance, options: APIOptions = {}) {
+    super(apiClient, options);
+  }
 
   // apiKey é retornada apenas na criação
   async create(
@@ -18,8 +22,7 @@ export class AccountsAPI {
       const response = await this.apiClient.post('/accounts', params);
       return response.data;
     } catch (error) {
-      console.error('Erro ao criar subconta:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao criar subconta:');
     }
   }
 
@@ -28,8 +31,7 @@ export class AccountsAPI {
       const response = await this.apiClient.get('/accounts', { params });
       return response.data;
     } catch (error) {
-      console.error('Erro ao obter a lista de subcontas:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao obter a lista de subcontas:');
     }
   }
 
@@ -40,8 +42,7 @@ export class AccountsAPI {
       });
       return response.data;
     } catch (error) {
-      console.error('Erro ao obter a subconta:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao obter a subconta:');
     }
   }
 }

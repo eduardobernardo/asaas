@@ -38,18 +38,22 @@ export class AsaasClient {
       },
     });
 
-    this.customers = new CustomersAPI(apiClient);
-    this.payments = new PaymentsAPI(apiClient);
-    this.installments = new InstallmentsAPI(apiClient);
-    this.subscriptions = new SubscriptionsAPI(apiClient);
-    this.webhooks = new WebhooksAPI(apiClient);
-    this.pixTransactions = new PixTransactionsAPI(apiClient);
-    this.pixQrCodes = new PixQrCodesAPI(apiClient);
-    this.invoices = new InvoicesAPI(apiClient);
-    this.bill = new BillAPI(apiClient);
-    this.transfers = new TransfersAPI(apiClient);
-    this.myAccount = new MyAccountAPI(apiClient);
-    this.accounts = new AccountsAPI(apiClient);
+    const printError =
+      options.printError !== undefined ? options.printError : true;
+    const apiOptions = { printError };
+
+    this.customers = new CustomersAPI(apiClient, apiOptions);
+    this.payments = new PaymentsAPI(apiClient, apiOptions);
+    this.installments = new InstallmentsAPI(apiClient, apiOptions);
+    this.subscriptions = new SubscriptionsAPI(apiClient, apiOptions);
+    this.webhooks = new WebhooksAPI(apiClient, apiOptions);
+    this.pixTransactions = new PixTransactionsAPI(apiClient, apiOptions);
+    this.pixQrCodes = new PixQrCodesAPI(apiClient, apiOptions);
+    this.invoices = new InvoicesAPI(apiClient, apiOptions);
+    this.bill = new BillAPI(apiClient, apiOptions);
+    this.transfers = new TransfersAPI(apiClient, apiOptions);
+    this.myAccount = new MyAccountAPI(apiClient, apiOptions);
+    this.accounts = new AccountsAPI(apiClient, apiOptions);
   }
 
   getUrl(options: AsaasOptions = {}) {

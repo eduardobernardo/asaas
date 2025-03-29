@@ -10,9 +10,12 @@ import {
   IUpdatePaymentCheckoutConfig,
 } from '@/types';
 import { AxiosInstance } from 'axios';
-
-export class MyAccountAPI {
-  constructor(private apiClient: AxiosInstance) {}
+import { BaseAPI } from './BaseAPI';
+import { APIOptions } from '@/types/AsaasTypes';
+export class MyAccountAPI extends BaseAPI {
+  constructor(apiClient: AxiosInstance, options: APIOptions = {}) {
+    super(apiClient, options);
+  }
 
   async commercialInfo(): Promise<ICommercialInfoResponse> {
     try {
@@ -34,8 +37,7 @@ export class MyAccountAPI {
       );
       return response.data;
     } catch (error) {
-      console.error('Erro ao atualizar dados comerciais:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao atualizar dados comerciais:');
     }
   }
 
@@ -49,8 +51,10 @@ export class MyAccountAPI {
       );
       return response.data;
     } catch (error) {
-      console.error('Erro ao salvar personalização da fatura:', error);
-      throw error;
+      return this.handleError(
+        error,
+        'Erro ao salvar personalização da fatura:',
+      );
     }
   }
 
@@ -61,8 +65,10 @@ export class MyAccountAPI {
       );
       return response.data;
     } catch (error) {
-      console.error('Erro ao recuperar personalização da fatura:', error);
-      throw error;
+      return this.handleError(
+        error,
+        'Erro ao recuperar personalização da fatura:',
+      );
     }
   }
 
@@ -71,8 +77,10 @@ export class MyAccountAPI {
       const response = await this.apiClient.get(`/myAccount/accountNumber/`);
       return response.data;
     } catch (error) {
-      console.error('Erro ao recuperar número de conta no Asaas:', error);
-      throw error;
+      return this.handleError(
+        error,
+        'Erro ao recuperar número de conta no Asaas:',
+      );
     }
   }
 
@@ -81,8 +89,7 @@ export class MyAccountAPI {
       const response = await this.apiClient.get(`/myAccount/fees`);
       return response.data;
     } catch (error) {
-      console.error('Erro ao recuperar taxas da conta:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao recuperar taxas da conta:');
     }
   }
 
@@ -91,8 +98,10 @@ export class MyAccountAPI {
       const response = await this.apiClient.get(`/myAccount/status`);
       return response.data;
     } catch (error) {
-      console.error('Erro ao consultar situação cadastral da conta:', error);
-      throw error;
+      return this.handleError(
+        error,
+        'Erro ao consultar situação cadastral da conta:',
+      );
     }
   }
 
@@ -101,8 +110,7 @@ export class MyAccountAPI {
       const response = await this.apiClient.get(`/wallets`);
       return response.data;
     } catch (error) {
-      console.error('Erro ao recuperar walletIds:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao recuperar walletIds:');
     }
   }
 
@@ -111,8 +119,7 @@ export class MyAccountAPI {
       const response = await this.apiClient.delete(`/myAccount/`);
       return response.data;
     } catch (error) {
-      console.error('Erro ao excluir subconta White Label:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao excluir subconta White Label:');
     }
   }
 }

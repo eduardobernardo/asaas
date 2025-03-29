@@ -6,17 +6,20 @@ import {
   IListInvoicesParams,
 } from '@/types/InvoiceTypes';
 import { AxiosInstance } from 'axios';
+import { BaseAPI } from './BaseAPI';
+import { APIOptions } from '@/types/AsaasTypes';
 
-export class InvoicesAPI {
-  constructor(private apiClient: AxiosInstance) {}
+export class InvoicesAPI extends BaseAPI {
+  constructor(apiClient: AxiosInstance, options: APIOptions = {}) {
+    super(apiClient, options);
+  }
 
   async create(params?: ICreateInvoiceParams): Promise<IInvoiceResponse> {
     try {
       const response = await this.apiClient.post('/invoices', params);
       return response.data;
     } catch (error) {
-      console.error('Erro ao agendar uma nota fiscal:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao agendar uma nota fiscal:');
     }
   }
 
@@ -25,8 +28,7 @@ export class InvoicesAPI {
       const response = await this.apiClient.get('/invoices', { params });
       return response.data;
     } catch (error) {
-      console.error('Erro ao obter a lista de notas fiscal:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao obter a lista de notas fiscal:');
     }
   }
 
@@ -35,8 +37,7 @@ export class InvoicesAPI {
       const response = await this.apiClient.get(`/invoices/${id}`);
       return response.data;
     } catch (error) {
-      console.error('Erro ao obter a nota fiscal:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao obter a nota fiscal:');
     }
   }
 
@@ -48,8 +49,7 @@ export class InvoicesAPI {
       const response = await this.apiClient.post(`/invoices/${id}`, params);
       return response.data;
     } catch (error) {
-      console.error('Erro ao atualizar a nota fiscal:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao atualizar a nota fiscal:');
     }
   }
 
@@ -58,8 +58,7 @@ export class InvoicesAPI {
       const response = await this.apiClient.post(`/invoices/${id}/authorize`);
       return response.data;
     } catch (error) {
-      console.error('Erro ao emitir nota fiscal:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao emitir nota fiscal:');
     }
   }
 
@@ -68,8 +67,7 @@ export class InvoicesAPI {
       const response = await this.apiClient.post(`/invoices/${id}/cancel`);
       return response.data;
     } catch (error) {
-      console.error('Erro ao cancelar nota fiscal:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao cancelar nota fiscal:');
     }
   }
 }

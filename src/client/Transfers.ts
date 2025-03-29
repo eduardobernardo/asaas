@@ -6,17 +6,23 @@ import {
   ICreateInternalTransferParams,
 } from '@/types/TransferTypes';
 import { AxiosInstance } from 'axios';
+import { APIOptions } from '../types/AsaasTypes';
+import { BaseAPI } from './BaseAPI';
 
-export class TransfersAPI {
-  constructor(private apiClient: AxiosInstance) {}
+export class TransfersAPI extends BaseAPI {
+  constructor(apiClient: AxiosInstance, options: APIOptions = {}) {
+    super(apiClient, options);
+  }
 
   async create(params?: ICreateTransferParams): Promise<ITransferResponse> {
     try {
       const response = await this.apiClient.post('/transfers', params);
       return response.data;
     } catch (error) {
-      console.error('Erro ao criar uma transferência para outra conta:', error);
-      throw error;
+      return this.handleError(
+        error,
+        'Erro ao criar uma transferência para outra conta:',
+      );
     }
   }
 
@@ -25,8 +31,10 @@ export class TransfersAPI {
       const response = await this.apiClient.get('/transfers', { params });
       return response.data;
     } catch (error) {
-      console.error('Erro ao obter a lista de transferências:', error);
-      throw error;
+      return this.handleError(
+        error,
+        'Erro ao obter a lista de transferências:',
+      );
     }
   }
 
@@ -37,8 +45,10 @@ export class TransfersAPI {
       const response = await this.apiClient.post(`/transfers/`, params);
       return response.data;
     } catch (error) {
-      console.error('Erro ao criar uma transferência para conta Asaas:', error);
-      throw error;
+      return this.handleError(
+        error,
+        'Erro ao criar uma transferência para conta Asaas:',
+      );
     }
   }
 
@@ -47,8 +57,7 @@ export class TransfersAPI {
       const response = await this.apiClient.get(`/transfers/${id}`);
       return response.data;
     } catch (error) {
-      console.error('Erro ao obter a transferência:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao obter a transferência:');
     }
   }
 
@@ -57,8 +66,7 @@ export class TransfersAPI {
       const response = await this.apiClient.post(`/transfers/${id}/cancel`);
       return response.data;
     } catch (error) {
-      console.error('Erro ao cancelar a transferência:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao cancelar a transferência:');
     }
   }
 }

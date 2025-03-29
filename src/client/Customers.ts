@@ -1,32 +1,36 @@
-import { AxiosInstance } from "axios";
-import { 
+import { AxiosInstance } from 'axios';
+import {
+  APIOptions,
   IAsaasCustomer,
   IAsaasCustomerResponse,
   IAsaasDeleteResponse,
   IListAsaasCustomerResponse,
-  IListCustomersParams
-} from "../types/AsaasTypes";
+  IListCustomersParams,
+} from '../types/AsaasTypes';
+import { BaseAPI } from './BaseAPI';
 
-export class CustomersAPI {
-  constructor(private apiClient: AxiosInstance) {}
+export class CustomersAPI extends BaseAPI {
+  constructor(apiClient: AxiosInstance, options: APIOptions = {}) {
+    super(apiClient, options);
+  }
 
   async new(customerData: IAsaasCustomer): Promise<IAsaasCustomerResponse> {
     try {
       const response = await this.apiClient.post('/customers', customerData);
       return response.data;
     } catch (error) {
-        console.error('Erro ao criar o cliente:', error);
-        throw error;
+      return this.handleError(error, 'Erro ao criar o cliente:');
     }
   }
 
-  async list(params?: IListCustomersParams): Promise<IListAsaasCustomerResponse> {
+  async list(
+    params?: IListCustomersParams,
+  ): Promise<IListAsaasCustomerResponse> {
     try {
       const response = await this.apiClient.get('/customers', { params });
       return response.data;
     } catch (error) {
-        console.error('Erro ao obter a lista de clientes:', error);
-        throw error;
+      return this.handleError(error, 'Erro ao obter a lista de clientes:');
     }
   }
 
@@ -35,8 +39,7 @@ export class CustomersAPI {
       const response = await this.apiClient.get(`/customers/${id}`);
       return response.data;
     } catch (error) {
-        console.error('Erro ao obter o cliente:', error);
-        throw error;
+      return this.handleError(error, 'Erro ao obter o cliente:');
     }
   }
 
@@ -45,8 +48,7 @@ export class CustomersAPI {
       const response = await this.apiClient.delete(`/customers/${id}`);
       return response.data;
     } catch (error) {
-        console.error('Erro ao deletar o cliente:', error);
-        throw error;
+      return this.handleError(error, 'Erro ao deletar o cliente:');
     }
   }
 
@@ -55,18 +57,22 @@ export class CustomersAPI {
       const response = await this.apiClient.post(`/customers/${id}/restore`);
       return response.data;
     } catch (error) {
-        console.error('Erro ao restaurar o cliente:', error);
-        throw error;
+      return this.handleError(error, 'Erro ao restaurar o cliente:');
     }
   }
 
-  async updateById(id: string, customerData: IAsaasCustomer): Promise<IAsaasCustomerResponse> {
+  async updateById(
+    id: string,
+    customerData: IAsaasCustomer,
+  ): Promise<IAsaasCustomerResponse> {
     try {
-      const response = await this.apiClient.post(`/customers/${id}`, customerData);
+      const response = await this.apiClient.post(
+        `/customers/${id}`,
+        customerData,
+      );
       return response.data;
     } catch (error) {
-        console.error('Erro ao atualizar o cliente:', error);
-        throw error;
+      return this.handleError(error, 'Erro ao atualizar o cliente:');
     }
   }
 }

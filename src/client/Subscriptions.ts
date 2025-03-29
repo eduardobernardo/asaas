@@ -1,5 +1,6 @@
 import { AxiosInstance } from 'axios';
 import {
+  APIOptions,
   IAsaasDeleteResponse,
   IListSubscriptionPaymentsResponse,
   ISubscription,
@@ -9,9 +10,12 @@ import {
   IListSubscriptionsParams,
   ICreateSubscriptionWithCreditCardParams,
 } from '../types/AsaasTypes';
+import { BaseAPI } from './BaseAPI';
 
-export class SubscriptionsAPI {
-  constructor(private apiClient: AxiosInstance) {}
+export class SubscriptionsAPI extends BaseAPI {
+  constructor(apiClient: AxiosInstance, options: APIOptions = {}) {
+    super(apiClient, options);
+  }
 
   async create(
     params?:
@@ -22,8 +26,7 @@ export class SubscriptionsAPI {
       const response = await this.apiClient.post('/subscriptions', params);
       return response.data;
     } catch (error) {
-      console.error('Erro ao criar uma nova assinatura:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao criar uma nova assinatura:');
     }
   }
 
@@ -34,8 +37,7 @@ export class SubscriptionsAPI {
       const response = await this.apiClient.get('/subscriptions', { params });
       return response.data;
     } catch (error) {
-      console.error('Erro ao obter a lista de assinaturas:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao obter a lista de assinaturas:');
     }
   }
 
@@ -44,8 +46,7 @@ export class SubscriptionsAPI {
       const response = await this.apiClient.get(`/subscriptions/${id}`);
       return response.data;
     } catch (error) {
-      console.error('Erro ao obter a assinatura:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao obter a assinatura:');
     }
   }
 
@@ -56,8 +57,10 @@ export class SubscriptionsAPI {
       );
       return response.data;
     } catch (error) {
-      console.error('Erro ao obter as cobranças da assinatura:', error);
-      throw error;
+      return this.handleError(
+        error,
+        'Erro ao obter as cobranças da assinatura:',
+      );
     }
   }
 
@@ -66,8 +69,7 @@ export class SubscriptionsAPI {
       const response = await this.apiClient.delete(`/subscriptions/${id}`);
       return response.data;
     } catch (error) {
-      console.error('Erro ao deletar a assinatura:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao deletar a assinatura:');
     }
   }
 
@@ -82,8 +84,7 @@ export class SubscriptionsAPI {
       );
       return response.data;
     } catch (error) {
-      console.error('Erro ao atualizar a assinatura:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao atualizar a assinatura:');
     }
   }
 }

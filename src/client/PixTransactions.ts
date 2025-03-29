@@ -1,12 +1,16 @@
 import { AxiosInstance } from 'axios';
 import {
+  APIOptions,
   IListPixTransactionsParams,
   IListPixTransactionsResponse,
   IPixTransaction,
 } from '../types/AsaasTypes';
+import { BaseAPI } from './BaseAPI';
 
-export class PixTransactionsAPI {
-  constructor(private apiClient: AxiosInstance) {}
+export class PixTransactionsAPI extends BaseAPI {
+  constructor(apiClient: AxiosInstance, options: APIOptions = {}) {
+    super(apiClient, options);
+  }
 
   async list(
     params?: IListPixTransactionsParams,
@@ -17,8 +21,10 @@ export class PixTransactionsAPI {
       });
       return response.data;
     } catch (error) {
-      console.error('Erro ao obter a lista de transações Pix:', error);
-      throw error;
+      return this.handleError(
+        error,
+        'Erro ao obter a lista de transações Pix:',
+      );
     }
   }
 
@@ -27,8 +33,7 @@ export class PixTransactionsAPI {
       const response = await this.apiClient.get(`/pix/transactions/${id}`);
       return response.data;
     } catch (error) {
-      console.error('Erro ao obter o transação Pix:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao obter o transação Pix:');
     }
   }
 
@@ -39,8 +44,7 @@ export class PixTransactionsAPI {
       );
       return response.data;
     } catch (error) {
-      console.error('Erro ao obter o transação Pix:');
-      throw error;
+      return this.handleError(error, 'Erro ao cancelar o transação Pix:');
     }
   }
 }

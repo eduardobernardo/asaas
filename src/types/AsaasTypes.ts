@@ -3,6 +3,11 @@ export interface AsaasOptions {
   sandboxUrl?: string;
   baseUrl?: string;
   userAgent?: string;
+  printError?: boolean;
+}
+
+export interface APIOptions {
+  printError?: boolean;
 }
 
 export interface IAsaasPagination<T> {

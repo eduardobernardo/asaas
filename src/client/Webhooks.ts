@@ -1,4 +1,4 @@
-import { IAsaasDeleteResponse } from '@/types/AsaasTypes';
+import { APIOptions, IAsaasDeleteResponse } from '@/types/AsaasTypes';
 import {
   ICreateWebhookParams,
   IListWebhooksResponse,
@@ -6,17 +6,19 @@ import {
   IWebhookResponse,
 } from '@/types/WebhookTypes';
 import { AxiosInstance } from 'axios';
+import { BaseAPI } from './BaseAPI';
 
-export class WebhooksAPI {
-  constructor(private apiClient: AxiosInstance) {}
+export class WebhooksAPI extends BaseAPI {
+  constructor(apiClient: AxiosInstance, options: APIOptions = {}) {
+    super(apiClient, options);
+  }
 
   async create(params?: ICreateWebhookParams): Promise<IWebhookResponse> {
     try {
       const response = await this.apiClient.post('/webhooks', params);
       return response.data;
     } catch (error) {
-      console.error('Erro ao criar uma novo webhook:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao criar uma novo webhook:');
     }
   }
 
@@ -25,8 +27,7 @@ export class WebhooksAPI {
       const response = await this.apiClient.get('/webhooks');
       return response.data;
     } catch (error) {
-      console.error('Erro ao obter a lista de webhooks:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao obter a lista de webhooks:');
     }
   }
 
@@ -35,8 +36,7 @@ export class WebhooksAPI {
       const response = await this.apiClient.get(`/webhooks/${id}`);
       return response.data;
     } catch (error) {
-      console.error('Erro ao obter o webhook:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao obter o webhook:');
     }
   }
 
@@ -45,8 +45,7 @@ export class WebhooksAPI {
       const response = await this.apiClient.delete(`/webhooks/${id}`);
       return response.data;
     } catch (error) {
-      console.error('Erro ao deletar o webhook:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao deletar o webhook:');
     }
   }
 
@@ -58,8 +57,7 @@ export class WebhooksAPI {
       const response = await this.apiClient.post(`/webhooks/${id}`, params);
       return response.data;
     } catch (error) {
-      console.error('Erro ao atualizar o webhook:', error);
-      throw error;
+      return this.handleError(error, 'Erro ao atualizar o webhook:');
     }
   }
 }

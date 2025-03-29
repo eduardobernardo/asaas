@@ -3,9 +3,10 @@
 
 A simple sdk made to abstract most of the Asaas payment gateway api requests.
 
-last update: 17/11/2024
+last update: 06/05/2024
 Items updated:
-- Payments: Added support for installment total value and payment external reference.
+- Global: Added option to disable automatic error logging (printError)
+- Payments: Added support split array.
 
 
 ## Author
@@ -65,6 +66,7 @@ const asaas = new AsaasClient(process.env.ASAAS_API_KEY, {
   //baseUrl?: string (default: https://api.asaas.com/v3);
   //sandbox?: boolean;
   //sandboxUrl?: string (default: https://sandbox.asaas.com/api/v3);
+  //printError?: boolean (default: true); // Determines whether errors will be automatically logged to the console
 });
 ```
 
@@ -78,6 +80,17 @@ const asaas = new AsaasClient(process.env.ASAAS_API_KEY, {
   sandbox: true;
   //sandboxUrl?: string (default: https://sandbox.asaas.com/api/v3);
   //baseUrl?: string (default: https://api.asaas.com/v3);
+});
+```
+
+### Error Logging
+By default, the library automatically logs errors to the console when request failures occur. You can disable this behavior by setting the `printError` option to `false`:
+
+```javascript
+import { AsaasClient } from 'asaas';
+
+const asaas = new AsaasClient(process.env.ASAAS_API_KEY, {
+  printError: false // Disables automatic error logging to the console
 });
 ```
 
@@ -160,83 +173,4 @@ await asaas.payments.list({
 | `subscription` | `string` | Filter by **Subscription ID**.|
 | `installment` | `string` | Filter by **Installment ID**.|
 | `externalReference` | `string` | Filter by **External Reference**.|
-| `paymentDate` | `string` | Filter by **Payment Date**.|
-| `estimatedCreditDate` | `string` | Filter by **Estimated Credit Date**.|
-| `pixQrCodeId` | `string` | Filter by **Static Pix QR Code ID**.|
-| `anticipated` | `boolean` | Filter by **Antecipated status**.|
-| `"dateCreated[ge]"` | `string` | Filter by **Initial Date Created**.|
-| `"dateCreated[le]"` | `string` | Filter by **End Date Created**.|
-| `"paymentDate[ge]"` | `string` | Filter by **Initial Payment Date**.|
-| `"paymentDate[le]"` | `string` | Filter by **End Payment Date**.|
-| `"estimatedCreditDate[ge]"` | `string` | Filter by **Initial Estimated Credit Date**.|
-| `"estimatedCreditDate[le]"` | `string` | Filter by **End Estimated Credit Date**.|
-| `"dueDate[ge]"` | `string` | Filter by **Initial Due Date**.|
-| `"dueDate[le]"` | `string` | Filter by **End Due Date**.|
-| `user` | `string` | Filter by the **Email** address of the user who created the charge.|
-| `offset` | `number` | Offset of search.|
-| `limit` | `number` | Limit of results.|
-
-#### Return payment by ID
-
-```javascript
-import { AsaasClient } from 'asaas';
-
-const asaas = new AsaasClient(process.env.ASAAS_API_KEY, {
-  // sandbox: boolean;
-  //sandboxUrl?: string (default: https://sandbox.asaas.com/api/v3);
-  //baseUrl?: string (default: https://api.asaas.com/v3);
-});
-
-//It returns a payment object by ID.
-await asaas.payments.getById("pay_0802152313252");
-```
-
-| Parameter   | Type       | Description                           |
-| :---------- | :--------- | :------------------------------------------ |
-| `id`      | `string` | **Required**. Payment ID |
-
-
-### Subscriptions
-
-#### Return all subscriptions
-Returns subscriptions. Filters can be applied, passing an object with the items allowed in the [official documentation](https://docs.asaas.com/reference/listar-assinaturas).
-
-```javascript
-import { AsaasClient } from 'asaas';
-
-const asaas = new AsaasClient(process.env.ASAAS_API_KEY, {
-  // sandbox: boolean;
-  //sandboxUrl?: string (default: https://sandbox.asaas.com/api/v3);
-  //baseUrl?: string (default: https://api.asaas.com/v3);
-});
-
-//List subscriptions for a specific customer ID.
-await asaas.subscriptions.list({
-  customer: "cus_123abcde456"
-});
-```
-
-### Webhooks
-
-#### Parse payload
-
-```javascript
-import { parseWebhookPayload } from 'asaas';
-
-const parsed = parseWebhookPayload(body);
-
-if (!parsed) {
-  console.error('event não suportado!');
-  return;
-}
-
-if ('payment' in parsed) { // infer IAsaasWebhookPayment
-  console.log(parsed.payment.id);
-  return;
-}
-```
-
-
-## Contributing
-
-Do you want to contribute? Found a bug? Feel free :)
+| `paymentDate` | `
