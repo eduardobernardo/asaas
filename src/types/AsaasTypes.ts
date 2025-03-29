@@ -97,7 +97,7 @@ export interface IAsaasPayment {
   interest?: Fine;
   postalService?: boolean;
   authorizedOnly?: boolean;
-  split?: Split;
+  split?: Split[];
   callback?: Callback;
 }
 
